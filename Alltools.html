@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image converter tool. Convert between JPG, PNG, WebP, GIF, BMP and more formats with quality control. No registration required.">
+    <meta name="keywords" content="image converter, jpg to png, png to webp, image format converter, free image converter, online image converter">
+    <meta name="author" content="Image File Converter">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://yourwebsite.com/image-converter" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Free Online Image File Converter">
+    <meta property="og:description" content="Convert between various image formats online for free. Supports JPG, PNG, WebP, GIF, BMP and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/image-converter">
+    <meta property="og:image" content="https://yourwebsite.com/images/converter-preview.jpg">
+    
+    <title>Free Online Image Converter | JPG, PNG, WebP, GIF, BMP Converter</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #ddd;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7ff;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .drop-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .drop-area:hover,
+        .drop-area.highlight {
+            border-color: var(--primary-color);
+            background-color: rgba(74, 107, 255, 0.05);
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background-color: #3a5ae8;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .file-info {
+            background-color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .conversion-options {
+            margin-bottom: 20px;
+        }
+
+        select,
+        input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+
+        .result-section {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: var(--secondary-color);
+            border-radius: 8px;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(74, 107, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* AdSense Container Styles */
+        .ad-container {
+            width: 100%;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 90px;
+        }
+
+        .ad-label {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .drop-area {
+                padding: 20px;
+            }
+            
+            .ad-container {
+                min-height: 50px;
+            }
+        }
+    </style>
+    
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+    <script>
+        // Initialize AdSense
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Free Online Image File Converter</h1>
+        
+        <!-- Top Ad Unit -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_TOP"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <div class="drop-area" id="dropArea">
+            <p>Drag & drop your image file here or</p>
+            <button class="btn" id="selectFileBtn">Select Image File</button>
+            <input type="file" id="fileInput" accept="image/*">
+        </div>
+
+        <div class="file-info" id="fileInfo">
+            No file selected
+        </div>
+
+        <div class="conversion-options">
+            <label for="outputFormat">Convert to:</label>
+            <select id="outputFormat">
+                <option value="jpeg">JPG Image (.jpg)</option>
+                <option value="png">PNG Image (.png)</option>
+                <option value="webp">WebP Image (.webp)</option>
+                <option value="gif">GIF Image (.gif)</option>
+                <option value="bmp">BMP Image (.bmp)</option>
+                <option value="raw">RAW Image (.raw)</option>
+                <option value="psd">PSD Image (.psd)</option>
+                <option value="eps">EPS Image (.eps)</option>
+                <option value="ico">ICO Image (.ico)</option>
+                <option value="ai">AI Image (.ai)</option>
+                <option value="svg">SVG Image (.svg)</option>
+                <option value="tif">TIF Image (.tif)</option>
+                <option value="cdr">CDR Image (.cdr)</option>
+            </select>
+
+            <div id="qualityControl">
+                <label for="quality">Quality:</label>
+                <input type="range" id="quality" min="1" max="100" value="80">
+                <span id="qualityValue">80%</span>
+            </div>
+
+            <button class="btn" id="convertBtn" disabled>Convert Image</button>
+        </div>
+        
+        <!-- Middle Ad Unit -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_MIDDLE"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Converting your image...</p>
+        </div>
+
+        <div class="result-section" id="resultSection">
+            <h3>Conversion Complete!</h3>
+            <div id="resultContent"></div>
+            <button class="btn" id="downloadBtn">Download Converted Image</button>
+            <button class="btn" id="newConversionBtn">Convert Another Image</button>
+        </div>
+        
+        <!-- Bottom Ad Unit -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_ID_BOTTOM"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+    </div>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Free Online Image File Converter",
+      "description": "Convert between various image formats online for free. Supports JPG, PNG, WebP, GIF, BMP and more.",
+      "url": "https://yourwebsite.com/image-converter",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // DOM elements
+            const dropArea = document.getElementById('dropArea');
+            const fileInput = document.getElementById('fileInput');
+            const selectFileBtn = document.getElementById('selectFileBtn');
+            const fileInfo = document.getElementById('fileInfo');
+            const outputFormat = document.getElementById('outputFormat');
+            const qualitySlider = document.getElementById('quality');
+            const qualityValue = document.getElementById('qualityValue');
+            const convertBtn = document.getElementById('convertBtn');
+            const loading = document.getElementById('loading');
+            const resultSection = document.getElementById('resultSection');
+            const resultContent = document.getElementById('resultContent');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const newConversionBtn = document.getElementById('newConversionBtn');
+
+            let selectedFile = null;
+            let convertedFileUrl = null;
+
+            // Event listeners
+            selectFileBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            dropArea.addEventListener('dragover', handleDragOver);
+            dropArea.addEventListener('dragleave', handleDragLeave);
+            dropArea.addEventListener('drop', handleDrop);
+            qualitySlider.addEventListener('input', updateQualityValue);
+            convertBtn.addEventListener('click', convertFile);
+            downloadBtn.addEventListener('click', downloadConvertedFile);
+            newConversionBtn.addEventListener('click', resetConverter);
+
+            // Functions
+            function handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    processSelectedFile(file);
+                } else {
+                    alert('Please select an image file (JPEG, PNG, etc.)');
+                }
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                dropArea.classList.add('highlight');
+            }
+
+            function handleDragLeave() {
+                dropArea.classList.remove('highlight');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                dropArea.classList.remove('highlight');
+
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    processSelectedFile(file);
+                } else {
+                    alert('Please drop an image file (JPEG, PNG, etc.)');
+                }
+            }
+
+            function processSelectedFile(file) {
+                selectedFile = file;
+                fileInfo.innerHTML = `
+                    <p><strong>Selected File:</strong> ${file.name}</p>
+                    <p><strong>Type:</strong> ${file.type || 'Unknown'}</p>
+                    <p><strong>Size:</strong> ${formatFileSize(file.size)}</p>
+                `;
+                convertBtn.disabled = false;
+                
+                // Track file selection (for analytics if you add it later)
+                console.log('File selected:', file.name);
+            }
+
+            function updateQualityValue() {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+            }
+
+            function convertFile() {
+                if (!selectedFile) return;
+
+                loading.style.display = 'block';
+                convertBtn.disabled = true;
+                
+                // Track conversion start (for analytics)
+                console.log('Conversion started:', outputFormat.value);
+
+                // Actual image conversion
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = new Image();
+                    img.onload = function () {
+                        // Create canvas for conversion
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+
+                        // Convert based on selected format
+                        const format = outputFormat.value;
+                        const quality = qualitySlider.value / 100;
+                        let mimeType;
+
+                        switch (format) {
+                            case 'jpeg': mimeType = 'image/jpeg'; break;
+                            case 'png': mimeType = 'image/png'; break;
+                            case 'webp': mimeType = 'image/webp'; break;
+                            case 'gif': mimeType = 'image/gif'; break;
+                            case 'bmp': mimeType = 'image/bmp'; break;
+                            default: mimeType = 'image/jpeg';
+                        }
+
+                        // Convert to data URL
+                        canvas.toBlob(function (blob) {
+                            const convertedFileName = `${selectedFile.name.split('.')[0]}.${format}`;
+                            convertedFileUrl = URL.createObjectURL(blob);
+
+                            // Show result
+                            showResult(convertedFileName, blob.size, convertedFileUrl);
+                            loading.style.display = 'none';
+                            
+                            // Track successful conversion
+                            console.log('Conversion successful:', format);
+                        }, mimeType, quality);
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(selectedFile);
+            }
+
+            function showResult(filename, size, fileUrl) {
+                resultContent.innerHTML = `
+                    <p><strong>Original:</strong> ${selectedFile.name} (${formatFileSize(selectedFile.size)})</p>
+                    <p><strong>Converted:</strong> ${filename} (${formatFileSize(size)})</p>
+                    <div style="margin: 15px 0; text-align: center;">
+                        <img src="${fileUrl}" style="max-width: 100%; max-height: 300px; border: 1px solid #ddd; padding: 5px; background: white;">
+                    </div>
+                `;
+                resultSection.style.display = 'block';
+                
+                // Scroll to results
+                resultSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            function downloadConvertedFile() {
+                if (!convertedFileUrl) return;
+
+                const a = document.createElement('a');
+                a.href = convertedFileUrl;
+                a.download = `${selectedFile.name.split('.')[0]}.${outputFormat.value}`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+
+                // Track download
+                console.log('File downloaded:', a.download);
+                
+                // Clean up
+                setTimeout(() => {
+                    URL.revokeObjectURL(convertedFileUrl);
+                }, 100);
+            }
+
+            function resetConverter() {
+                if (convertedFileUrl) {
+                    URL.revokeObjectURL(convertedFileUrl);
+                }
+                selectedFile = null;
+                convertedFileUrl = null;
+                fileInput.value = '';
+                fileInfo.textContent = 'No file selected';
+                convertBtn.disabled = true;
+                resultSection.style.display = 'none';
+                qualitySlider.value = 80;
+                qualityValue.textContent = '80%';
+                
+                // Track new conversion
+                console.log('New conversion started');
+            }
+
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+        });
+    </script>
+</body>
+
+</html>
